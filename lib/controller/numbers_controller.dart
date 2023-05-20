@@ -1,8 +1,9 @@
+import 'package:chiled_game_v1/model/number.dart';
 import 'package:get/get.dart';
 
 
 import '../Api/Api.dart';
-import '../model/number.dart';
+
 
 class NumbersController extends GetxController{
 
