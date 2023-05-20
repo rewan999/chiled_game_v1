@@ -13,6 +13,7 @@ class NumbersController extends GetxController{
     super.onInit();
     Api.getNumbers().then((value){
       numbersList.addAll(value);
+      print('----');
     });
   }
 
