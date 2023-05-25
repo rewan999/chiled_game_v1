@@ -4,10 +4,14 @@ import 'package:http/http.dart' as http;
 
 import '../model/number.dart';
 
+
+   var url = "http://10.0.2.2:8080";
+
 class Api {
+
   static Future<List<Number>> getNumbers() async {
     var request = http.Request('GET',
-        Uri.parse('http://192.168.1.3:8080/education/api/all_numbers.php'));
+        Uri.parse('$url/education/api/all_numbers.php'));
 
     http.StreamedResponse response = await request.send();
 

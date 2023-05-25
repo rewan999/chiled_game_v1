@@ -1,14 +1,11 @@
+import 'package:chiled_game_v1/view/NumbersPage.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 
-import '../controller/home_controller.dart';
-
-
 class Homepage extends StatefulWidget {
-  HomeController homeController = Get.put(HomeController());
-   Homepage({Key? key}) : super(key: key);
+  const Homepage({Key? key}) : super(key: key);
 
   @override
   State<Homepage> createState() => HomepageState();
@@ -26,12 +23,13 @@ class HomepageState extends State<Homepage>
           Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("image/1.gif"), fit: BoxFit.fill)),
+                    image: AssetImage("assets/images/1.gif"), fit: BoxFit.fill)),
           ),
           ElevatedButton(
             onPressed: () {
               //final player=AudioPlayer();
               // player.play(AssetSource('1.mp4'));
+              Get.to(()=> NumbersPage());
             },
             child: Text("Start"),
           )
@@ -137,57 +135,6 @@ class SumState extends State<Sum> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-    return Scaffold(key: _scaffoldKey, appBar: AppBar(),
-        body: Container());
+    return Scaffold(key: _scaffoldKey, appBar: AppBar(), body: Container());
   }
 }
-
-
-
-class RandomNumberView extends StatelessWidget {
-  final HomeController controller = Get.find();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('sum numbers'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Obx(
-                  () => Text(
-                'Random Number 1: ${controller.randomNumber1.value}',
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-            SizedBox(height: 16),
-            Obx(
-                  () => Text(
-                'Random Number 2: ${controller.randomNumber2.value}',
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-            SizedBox(height: 16),
-            Obx(
-                  () => Text(
-                'Sum: ${controller.sum.value}',
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                controller.getSum();
-              },
-              child: Text('Generate Random Numbers to sum'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
