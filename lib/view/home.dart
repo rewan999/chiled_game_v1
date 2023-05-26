@@ -29,7 +29,7 @@ class HomepageState extends State<Homepage>
             onPressed: () {
               //final player=AudioPlayer();
               // player.play(AssetSource('1.mp4'));
-              Get.to(()=> NumbersPage());
+              Get.to(()=> Levels());
             },
             child: Text("Start"),
           )
@@ -138,3 +138,96 @@ class SumState extends State<Sum> with SingleTickerProviderStateMixin {
     return Scaffold(key: _scaffoldKey, appBar: AppBar(), body: Container());
   }
 }
+
+class Levels extends StatefulWidget {
+  const Levels({Key? key}) : super(key: key);
+
+  @override
+  State<Levels> createState() => LevelsState();
+}
+
+class LevelsState extends State<Levels>
+    with SingleTickerProviderStateMixin {
+  TextEditingController textEditingController = TextEditingController();
+  late AnimationController _controller;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(),
+      body: SafeArea(
+
+        child:Stack(
+
+          children:[
+            Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/1.gif"), fit: BoxFit.fill)),
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment:MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: (){
+
+                      Get.to(()=> NumbersPage());
+                    },
+                    child: Container(
+                      width: 200,
+                      height: 75,
+                      decoration: const BoxDecoration(
+
+                          color: Colors.blue
+                      ),
+                      child: const Center(
+                        child: Text('Knowing Numbers', style: TextStyle(color: Colors.white,fontSize: 22,fontWeight: FontWeight.bold),),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 40,),
+
+                  GestureDetector(
+                    onTap: (){
+
+                      Get.to(()=> NumbersPage());
+                    },
+                    child: Container(
+                      width: 200,
+                      height: 75,
+                      decoration: const BoxDecoration(
+
+                          color: Colors.blue
+                      ),
+                      child: const Center(
+                        child: Text('Sum of Numbers', style: TextStyle(color: Colors.white,fontSize: 22,fontWeight:FontWeight.bold),),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 40,),
+
+                  GestureDetector(
+                    onTap: (){
+
+                      Get.to(()=> Info());
+                    },
+                    child: Container(
+                      width: 200,
+                      height: 75,
+                      decoration: const BoxDecoration(
+
+                          color: Colors.blue
+                      ),
+                      child: const Center(
+                        child: Text('Test', style: TextStyle(color: Colors.white ,fontSize: 25,fontWeight: FontWeight.bold),),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );}}

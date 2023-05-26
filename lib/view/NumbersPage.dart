@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../controller/numbers_controller.dart';
+
+
 
 class NumbersPage extends StatelessWidget {
   // const NumbersPage({Key? key}) : super(key: key);
@@ -47,15 +51,68 @@ class NumbersPage extends StatelessWidget {
                                       .numbersList[index].correctAnswer
                                       .toString()),
                                   Container(
-                                    width: 100,
-                                    height: 100,
+                                    width: 300,
+                                    height: 400,
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
                                       image: NetworkImage(
                                           'http://10.0.2.2:8080/education/images/${numbersController.numbersList[index].image.toString()}'),
                                     )),
-                                  )
-                                ],
+                                  ),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                  GestureDetector(
+                                  onTap: () {
+                                      numbersController.backward();
+                                             },
+                                      child: Container(
+                                        child: Center(child: Text("1",style: TextStyle(fontSize: 30,fontWeight:FontWeight.bold,color: Colors.white),)),
+                                              width: 60,
+                                              height: 60,
+                                       decoration: const BoxDecoration(
+                                          color: Colors.red,),
+                                       ),
+                                       ),
+                                   GestureDetector(
+                                      onTap: () {
+                                      numbersController.backward();
+                                      },
+                                      child: Container(
+                                        child: Center(child: Text("1",style: TextStyle(fontSize: 30,fontWeight:FontWeight.bold,color: Colors.white),)),
+                                      width: 60,
+                                      height: 60,
+                                      decoration: const BoxDecoration(
+                                      color: Colors.red,),
+                                      ),
+                                      ),
+                                 GestureDetector(
+                                      onTap: () {
+                                        numbersController.backward();
+                                      },
+                                      child: Container(
+                                        child: Center(child: Text("1",style: TextStyle(fontSize: 30,fontWeight:FontWeight.bold,color: Colors.white),)),
+                                        width: 60,
+                                        height: 60,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.red,),
+                                      ),
+                                    ),
+                                 GestureDetector(
+                                      onTap: () {
+                                        numbersController.backward();
+                                      },
+                                      child: Container(
+                                        child: Center(child: Text("1",style: TextStyle(fontSize: 30,fontWeight:FontWeight.bold,color: Colors.white),)),
+                                        width: 60,
+                                        height: 60,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.red,),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                 ],
                               ),
                             );
                           },
@@ -77,6 +134,18 @@ class NumbersPage extends StatelessWidget {
                             decoration: const BoxDecoration(
                                 color: Colors.blue, shape: BoxShape.circle),
                             child: const Icon(Icons.arrow_back,
+                                color: Colors.white, size: 30)),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          numbersController.backward();
+                        },
+                        child: Container(
+                            width: 60,
+                            height: 60,
+                            decoration: const BoxDecoration(
+                                color: Colors.blue, shape: BoxShape.circle),
+                            child: const Icon(Icons.keyboard_voice,
                                 color: Colors.white, size: 30)),
                       ),
                       GestureDetector(
