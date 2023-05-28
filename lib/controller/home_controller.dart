@@ -18,8 +18,8 @@ class HomeController extends GetxController {
 
   getSum() {
     while (sum.value >= 10) {
-      randomNumber1.value = Random().nextInt(10) + 1;
-      randomNumber2.value = Random().nextInt(10) + 1;
+      randomNumber1.value = Random().nextInt(10) ;
+      randomNumber2.value = Random().nextInt(10) ;
       sum.value = randomNumber1.value + randomNumber2.value;
     }
   }

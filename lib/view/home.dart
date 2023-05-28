@@ -1,9 +1,10 @@
+import 'package:chiled_game_v1/controller/home_controller.dart';
 import 'package:chiled_game_v1/view/NumbersPage.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
-
+import 'package:awesome_dialog/awesome_dialog.dart';
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -123,21 +124,7 @@ class InfoState extends State<Info> with SingleTickerProviderStateMixin {
   }
 }
 
-class Sum extends StatefulWidget {
-  const Sum({Key? key}) : super(key: key);
-  @override
-  State<Sum> createState() => SumState();
-}
 
-class SumState extends State<Sum> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  @override
-  Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-    return Scaffold(key: _scaffoldKey, appBar: AppBar(), body: Container());
-  }
-}
 
 class Levels extends StatefulWidget {
   const Levels({Key? key}) : super(key: key);
