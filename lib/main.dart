@@ -1,4 +1,5 @@
 import 'package:chiled_game_v1/view/home.dart';
+import 'package:chiled_game_v1/view/sum_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: Sum(),
+      home: SumPage(),
     );
   }
 }

@@ -36,6 +36,8 @@ dependencies:
   http:
   xrandom:
   scrollable_positioned_list:
+  flutter_svg:
+  rive: ^0.11.1
 #  awesome_dialog:
 
 

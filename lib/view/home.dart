@@ -1,5 +1,6 @@
 import 'package:chiled_game_v1/controller/home_controller.dart';
 import 'package:chiled_game_v1/view/NumbersPage.dart';
+import 'package:chiled_game_v1/view/sum_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -182,7 +183,7 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => NumbersPage());
+                      Get.to(() => SumPage());
                     },
                     child: Container(
                       width: 200,
@@ -231,71 +232,3 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
   }
 }
 
-
-class Sum extends StatelessWidget {
-  // const NumbersPage({Key? key}) : super(key: key);
-
-  TextEditingController myController = TextEditingController();
-
-  HomeController HController = Get.put(HomeController());
-String storevalue="1,2,3,4,5,6,7,8,9,10";
-  Sum({super.key});
-  @override
-  void dispose() {
-    myController.dispose();
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Obx(() {
-      return Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'First Number: ${HController.randomNumber1}',
-              style: TextStyle(fontSize: 24),
-            ),
-            Text(
-              'Second Number: ${HController.randomNumber2}',
-              style: TextStyle(fontSize: 24),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                HController.getSum();
-              },
-              child: Text('Generate Numbers'),
-            ),
-            SizedBox(height: 20),
-            Form(
-
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                    controller: myController,
-                    decoration: InputDecoration(
-                      labelText: "enter the sum of numbers",
-                    ),
-                    validator: (value) {
-                      if (value == storevalue) {
-
-                          showDialog(context: context, builder: (context)
-                          {
-                            return AlertDialog(
-                              actions: [
-                                FloatingActionButton(
-                                    child: Text("THIS IS CORECT!!!!")
-                                    ,  onPressed: (){})
-                              ],
-                            );
-                          });
-                      }
-                    }))
-          ,
-          ],
-        ),
-      );
-    });
-  }
-}
