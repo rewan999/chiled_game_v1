@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:chiled_game_v1/controller/home_controller.dart';
 import 'package:chiled_game_v1/view/NumbersPage.dart';
 import 'package:chiled_game_v1/view/sum_page.dart';
@@ -5,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
-// import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:lottie/lottie.dart';
 
 class Homepage extends StatefulWidget {
@@ -25,22 +26,28 @@ class HomepageState extends State<Homepage>
         appBar: AppBar(),
         body: Stack(children: [
           Container(
+
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/images/1.gif"),
+                    image: AssetImage("assets/images/144414-find-location.gif"),
                     fit: BoxFit.fill)),
           ),
-          ElevatedButton(
-            onPressed: () {
-              //final player=AudioPlayer();
-              // player.play(AssetSource('1.mp4'));
-              Get.to(() => Levels());
-            },
-            child: const Text("Start"),
-          ), //ListView(
-          // children: [
-          //// Load a Lottie file from your assets
-          // Lottie.asset('assets/LottieLogo1.json'),])
+          Center(
+
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.black,
+              padding: EdgeInsets.symmetric(horizontal:30,vertical: 20,
+              )),
+              onPressed: () {
+                //final player=AudioPlayer();
+                // player.play(AssetSource('1.mp4'));
+                Get.to(() => Levels());
+              },
+              child: const Text("Start",
+                style: TextStyle(backgroundColor: Colors.black,
+                color: Colors.white),),
+            ),
+          ),
         ]));
   }
 }
@@ -143,86 +150,67 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(),
       body: SafeArea(
-        child: Stack(
+        child: ListWheelScrollView(
+
+          itemExtent:450,
+          physics: FixedExtentScrollPhysics(),
+         // perspective: 0.01,
+          //diameterRatio:0.009,
+          squeeze: 0.9,
+          offAxisFraction: 1.5,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/images/1.gif"),
-                      fit: BoxFit.fill)),
+            GestureDetector(
+              onTap: () {
+                Get.to(() => NumbersPage());
+              },
+              child: Container(
+                width: 200,
+                height: 75,
+                decoration: const BoxDecoration(color: Colors.blue,),
+                child: const Center(
+
+                  child:Text("JNDJF")
+                  
+                ),
+              ),
             ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => NumbersPage());
-                    },
-                    child: Container(
-                      width: 200,
-                      height: 75,
-                      decoration: const BoxDecoration(color: Colors.blue),
-                      child: const Center(
-                        child: Text(
-                          'Knowing Numbers',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
+          //  const SizedBox(height: 40,),
+            GestureDetector(
+              onTap: () {
+                Get.to(() => SumPage());
+              },
+              child: Container(
+                width: 200,
+                height: 75,
+                decoration: BoxDecoration(color: Colors.blue,
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/sum.gif"),
+                        fit: BoxFit.fill)),),
+            ),
+
+            // const SizedBox(height: 40),
+            GestureDetector(
+              onTap: () {
+                Get.to(() => Info());
+              },
+              child: Container(
+                width: 200,
+                height: 75,
+                decoration: const BoxDecoration(color: Colors.blue),
+                child: const Center(
+                  child: Text(
+                    'Test',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => SumPage());
-                    },
-                    child: Container(
-                      width: 200,
-                      height: 75,
-                      decoration: const BoxDecoration(color: Colors.blue),
-                      child: const Center(
-                        child: Text(
-                          'Sum of Numbers',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => Info());
-                    },
-                    child: Container(
-                      width: 200,
-                      height: 75,
-                      decoration: const BoxDecoration(color: Colors.blue),
-                      child: const Center(
-                        child: Text(
-                          'Test',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ],
