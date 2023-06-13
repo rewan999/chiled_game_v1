@@ -182,7 +182,7 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
           //  const SizedBox(height: 40,),
             GestureDetector(
               onTap: () {
-                Get.to(() => SumPage());
+                print (SumPage());
               },
               child: Container(
                 width: 200,
@@ -202,21 +202,20 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                 width: 200,
                 height: 75,
                 decoration: const BoxDecoration(color: Colors.blue),
-                child: const Center(
-                  child: Text(
-                    'Test',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                child: Container(
+                  width: 200,
+                  height: 75,
+                  decoration: BoxDecoration(color: Colors.blue,
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/test.gif"),
+                          fit: BoxFit.fill)),),
                   ),
                 ),
-              ),
+             ] ),
             ),
-          ],
-        ),
-      ),
     );
+
+
   }
 }
 
