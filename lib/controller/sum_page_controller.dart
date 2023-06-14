@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-
 class SumPageController extends GetxController {
   TextEditingController resultController = TextEditingController();
   final FlutterTts flutterTts = FlutterTts();
-
 
   RxInt randomNumber1 = 0.obs;
   RxInt randomNumber2 = 0.obs;

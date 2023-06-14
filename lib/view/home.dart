@@ -160,54 +160,53 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
         child: Center(
           child: SizedBox(
             width: Get.width * 0.8,
-            child: ListView(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => NumbersPage());
-                    },
-                    child: Container(
-                      height: Get.height * 0.8,
-                      decoration: const BoxDecoration(
-                        color: Colors.red,
-                      ),
-                      child: const Center(child: Text("JNDJF")),
-                    ),
+            child: ListView(children: [
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => NumbersPage());
+                },
+                child: Container(
+                  height: Get.height * 0.8,
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
                   ),
-                   const SizedBox(height: 40,),
-                  GestureDetector(
-                    onTap: () {
-
-                    },
-                    child: Container(
-                      height: Get.height * 0.8,
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: AssetImage("assets/images/sum.gif"),
-                              fit: BoxFit.fill)),
-                    ),
+                  child: const Center(child: Text("JNDJF")),
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  height: Get.height * 0.8,
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/sum.gif"),
+                          fit: BoxFit.fill)),
+                ),
+              ),
+              const SizedBox(height: 40),
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => Info());
+                },
+                child: Container(
+                  height: Get.height * 0.8,
+                  decoration: const BoxDecoration(color: Colors.blue),
+                  child: Container(
+                    width: 200,
+                    height: 75,
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/test.gif"),
+                            fit: BoxFit.fill)),
                   ),
-                  const SizedBox(height: 40),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => Info());
-                    },
-                    child: Container(
-                      height: Get.height * 0.8,
-                      decoration: const BoxDecoration(color: Colors.blue),
-                      child: Container(
-                        width: 200,
-                        height: 75,
-                        decoration: BoxDecoration(
-                            color: Colors.blue,
-                            image: DecorationImage(
-                                image: AssetImage("assets/images/test.gif"),
-                                fit: BoxFit.fill)),
-                      ),
-                    ),
-                  ),
-                ]),
+                ),
+              ),
+            ]),
           ),
         ),
       ),

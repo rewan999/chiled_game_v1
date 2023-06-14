@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:chiled_game_v1/model/number.dart';
@@ -21,7 +22,9 @@ class NumbersController extends GetxController {
 
   RxBool success = false.obs;
   RxInt correctNumberIndex = (-1).obs;
-
+  RxBool hide = false.obs;
+  Timer? timer;
+  RxInt time = 5.obs;
 
   @override
   void onInit() {
@@ -32,6 +35,12 @@ class NumbersController extends GetxController {
       print('----');
       loading.value = false;
     });
+  }
+
+  @override
+  void dispose(){
+    timer?.cancel();
+    super.dispose();
   }
 
   backward() {
@@ -53,27 +62,50 @@ class NumbersController extends GetxController {
     getRandomNumbers(index.value);
   }
 
-  getRandomNumbers(int index) {
+  getRandomNumbers(int index) async {
+
     success.value = false;
     solveNumbers.clear();
-    while(solveNumbers.length < 4){
+    while (solveNumbers.length < 4) {
       int value = Random().nextInt(10);
 
-      if(!solveNumbers.contains(value) && value != int.parse(numbersList[index].correctAnswer!)){
+      if (!solveNumbers.contains(value) &&
+          value != int.parse(numbersList[index].correctAnswer!)) {
         solveNumbers.add(value);
       }
     }
 
     correctNumberIndex.value = Random().nextInt(3);
-    solveNumbers[correctNumberIndex.value] = int.parse(numbersList[index].correctAnswer!);
+    solveNumbers[correctNumberIndex.value] =
+        int.parse(numbersList[index].correctAnswer!);
+    hide.value = false;
+    time.value = 5;
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if(time.value > 0){
+        time --;
+      }else{
+        timer.cancel();
+      }
+    });
+    await Future.delayed(const Duration(milliseconds: 5000)).then((value) {
+      hide.value = true;
+    });
   }
 
-  check(index){
-    if(correctNumberIndex.value == index) {
-      Get.snackbar('Great !', 'You can move to the next level', backgroundColor: Colors.lightGreen, colorText: Colors.white, margin: const EdgeInsets.only(top: 10, left: 20, right: 20));
+  check(index) {
+    if (correctNumberIndex.value == index) {
+      Get.snackbar('Great !', 'You can move to the next level',
+          backgroundColor: Colors.lightGreen,
+          colorText: Colors.white,
+          margin: const EdgeInsets.only(top: 10, left: 20, right: 20));
+      customSpeak('Great !!');
       success.value = true;
-    }else{
-      Get.snackbar('Wrong', 'Try again', backgroundColor: Colors.redAccent, colorText: Colors.white, margin: const EdgeInsets.only(top: 10, left: 20, right: 20));
+    } else {
+      Get.snackbar('Wrong', 'Try again',
+          backgroundColor: Colors.redAccent,
+          colorText: Colors.white,
+          margin: const EdgeInsets.only(top: 10, left: 20, right: 20));
+      customSpeak('Wrong, try again');
     }
   }
 
@@ -81,7 +113,15 @@ class NumbersController extends GetxController {
     await flutterTts.setLanguage("en-US");
     await flutterTts.setPitch(1);
     await flutterTts.setSpeechRate(0.4);
-    await flutterTts.speak( numbersList.isEmpty ? 'wait a second' : numbersList[index.value].title!);
+    await flutterTts.speak(numbersList.isEmpty
+        ? 'wait a second'
+        : numbersList[index.value].title!);
   }
 
+  customSpeak(text) async {
+    await flutterTts.setLanguage("en-US");
+    await flutterTts.setPitch(1.1);
+    await flutterTts.setSpeechRate(0.3);
+    await flutterTts.speak(text);
+  }
 }

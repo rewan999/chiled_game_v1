@@ -6,7 +6,6 @@ class SumPage extends StatelessWidget {
   final TextEditingController textedit = TextEditingController();
   SumPageController sumPageController = Get.put(SumPageController());
 
-
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -53,10 +52,7 @@ class SumPage extends StatelessWidget {
                     sumPageController.checkResult(context);
                   },
                   child: const Text("SUBMIT")),
-              ElevatedButton(
-                  onPressed: () {
-                  },
-                  child: const Text("VOICE"))
+              ElevatedButton(onPressed: () {}, child: const Text("VOICE"))
             ],
           ),
         ),
