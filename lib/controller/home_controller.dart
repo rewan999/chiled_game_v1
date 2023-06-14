@@ -14,7 +14,6 @@ class HomeController extends GetxController {
     result--;
   }
 
-
   init() {
     result.value = 0;
   }

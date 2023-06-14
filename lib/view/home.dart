@@ -26,26 +26,29 @@ class HomepageState extends State<Homepage>
         appBar: AppBar(),
         body: Stack(children: [
           Container(
-
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage("assets/images/144414-find-location.gif"),
                     fit: BoxFit.fill)),
           ),
           Center(
-
             child: ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.black,
-              padding: EdgeInsets.symmetric(horizontal:30,vertical: 20,
-              )),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 20,
+                  )),
               onPressed: () {
                 //final player=AudioPlayer();
                 // player.play(AssetSource('1.mp4'));
                 Get.to(() => Levels());
               },
-              child: const Text("Start",
-                style: TextStyle(backgroundColor: Colors.black,
-                color: Colors.white),),
+              child: const Text(
+                "Start",
+                style: TextStyle(
+                    backgroundColor: Colors.black, color: Colors.white),
+              ),
             ),
           ),
         ]));
@@ -83,7 +86,7 @@ class InfoState extends State<Info> with SingleTickerProviderStateMixin {
                     style: TextStyle(fontSize: 30, color: Color(0xFF363f93)),
                   ),
                   const Text(
-                    "Welcomed !",
+                    "Welcome !",
                     style: TextStyle(fontSize: 30, color: Color(0xFF363f93)),
                   ),
                   SizedBox(height: height * 0.05),
@@ -94,7 +97,7 @@ class InfoState extends State<Info> with SingleTickerProviderStateMixin {
                     validator: (value) {
                       if (value!.isEmpty ||
                           !RegExp(r'^[A-Z a-z]+$').hasMatch(value)) {
-                        return "plese enter correct name";
+                        return "please enter correct name";
                       } else
                         return null;
                     },
@@ -150,72 +153,64 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(),
       body: SafeArea(
-        child: ListWheelScrollView(
-
-          itemExtent:450,
-          physics: FixedExtentScrollPhysics(),
-         // perspective: 0.01,
-          //diameterRatio:0.009,
-          squeeze: 0.9,
-          offAxisFraction: 1.5,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Get.to(() => NumbersPage());
-              },
-              child: Container(
-                width: 200,
-                height: 75,
-                decoration: const BoxDecoration(color: Colors.blue,),
-                child: const Center(
-
-                  child:Text("JNDJF")
-                  
-                ),
-              ),
-            ),
-          //  const SizedBox(height: 40,),
-            GestureDetector(
-              onTap: () {
-                print (SumPage());
-              },
-              child: Container(
-                width: 200,
-                height: 75,
-                decoration: BoxDecoration(color: Colors.blue,
-                    image: DecorationImage(
-                        image: AssetImage("assets/images/sum.gif"),
-                        fit: BoxFit.fill)),),
-            ),
-
-            // const SizedBox(height: 40),
-            GestureDetector(
-              onTap: () {
-                Get.to(() => Info());
-              },
-              child: Container(
-                width: 200,
-                height: 75,
-                decoration: const BoxDecoration(color: Colors.blue),
-                child: Container(
-                  width: 200,
-                  height: 75,
-                  decoration: BoxDecoration(color: Colors.blue,
-                      image: DecorationImage(
-                          image: AssetImage("assets/images/test.gif"),
-                          fit: BoxFit.fill)),),
+        child: Center(
+          child: SizedBox(
+            width: Get.width * 0.8,
+            child: ListView(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => NumbersPage());
+                    },
+                    child: Container(
+                      height: Get.height * 0.8,
+                      decoration: const BoxDecoration(
+                        color: Colors.red,
+                      ),
+                      child: const Center(child: Text("JNDJF")),
+                    ),
                   ),
-                ),
-             ] ),
-            ),
+                   const SizedBox(height: 40,),
+                  GestureDetector(
+                    onTap: () {
+
+                    },
+                    child: Container(
+                      height: Get.height * 0.8,
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: AssetImage("assets/images/sum.gif"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => Info());
+                    },
+                    child: Container(
+                      height: Get.height * 0.8,
+                      decoration: const BoxDecoration(color: Colors.blue),
+                      child: Container(
+                        width: 200,
+                        height: 75,
+                        decoration: BoxDecoration(
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: AssetImage("assets/images/test.gif"),
+                                fit: BoxFit.fill)),
+                      ),
+                    ),
+                  ),
+                ]),
+          ),
+        ),
+      ),
     );
-
-
   }
 }
-

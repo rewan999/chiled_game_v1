@@ -1,14 +1,14 @@
 import 'dart:math';
 
+import 'package:chiled_game_v1/Api/Api.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../controller/numbers_controller.dart';
 
-
-
 class NumbersPage extends StatelessWidget {
   // const NumbersPage({Key? key}) : super(key: key);
+  final TextEditingController textedit = TextEditingController();
 
   NumbersController numbersController = Get.put(NumbersController());
 
@@ -25,7 +25,6 @@ class NumbersPage extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               children: [
                 Container(
-                  // width: Get.width * 0.7,
                   child: numbersController.loading.value
                       ? const Center(child: CircularProgressIndicator())
                       : ScrollablePositionedList.builder(
@@ -44,75 +43,76 @@ class NumbersPage extends StatelessWidget {
                               // margin: EdgeInsets.symmetric(vertical: 20),
                               child: Column(
                                 children: [
-                                  Text(numbersController
-                                      .numbersList[index].title
-                                      .toString()),
-                                  Text(numbersController
-                                      .numbersList[index].correctAnswer
-                                      .toString()),
+                                  const SizedBox(height: 10),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: SizedBox(
+                                      width: 60,
+                                      child: Center(
+                                        child: GestureDetector(
+                                          onTap: (){
+                                            numbersController.getRandomNumbers(index);
+                                          },
+                                          child: const Icon(Icons.refresh),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  // Text(numbersController
+                                  //     .numbersList[index].title
+                                  //     .toString()),
+                                  // Text(numbersController
+                                  //     .numbersList[index].correctAnswer
+                                  //     .toString()),
                                   Container(
                                     width: 300,
                                     height: 400,
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
                                       image: NetworkImage(
-                                          'http://10.0.2.2:8080/education/images/${numbersController.numbersList[index].image.toString()}'),
+                                          '${Api.url}/education/images/${numbersController.numbersList[index].image.toString()}'),
                                     )),
                                   ),
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                  GestureDetector(
-                                  onTap: () {
-                                      numbersController.backward();
+                                 Obx((){
+                                   return  SizedBox(
+                                     width: Get.width * 0.9,
+                                     height: 70,
+                                     // color: Colors.blue,
+                                     child: ListView.builder(
+                                       scrollDirection: Axis.horizontal,
+                                       itemCount: numbersController.solveNumbers.length,
+                                       itemBuilder: (BuildContext context, index){
+                                         return GestureDetector(
+                                             onTap: (){
+                                               if(!numbersController.success.value){
+                                                 numbersController.check(index);
+                                               }
                                              },
-                                      child: Container(
-                                        child: Center(child: Text("1",style: TextStyle(fontSize: 30,fontWeight:FontWeight.bold,color: Colors.white),)),
-                                              width: 60,
-                                              height: 60,
-                                       decoration: const BoxDecoration(
-                                          color: Colors.red,),
-                                       ),
-                                       ),
-                                   GestureDetector(
-                                      onTap: () {
-                                      numbersController.backward();
-                                      },
-                                      child: Container(
-                                        child: Center(child: Text("1",style: TextStyle(fontSize: 30,fontWeight:FontWeight.bold,color: Colors.white),)),
-                                      width: 60,
-                                      height: 60,
-                                      decoration: const BoxDecoration(
-                                      color: Colors.red,),
-                                      ),
-                                      ),
-                                 GestureDetector(
-                                      onTap: () {
-                                        numbersController.backward();
-                                      },
-                                      child: Container(
-                                        child: Center(child: Text("1",style: TextStyle(fontSize: 30,fontWeight:FontWeight.bold,color: Colors.white),)),
-                                        width: 60,
-                                        height: 60,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.red,),
-                                      ),
-                                    ),
-                                 GestureDetector(
-                                      onTap: () {
-                                        numbersController.backward();
-                                      },
-                                      child: Container(
-                                        child: Center(child: Text("1",style: TextStyle(fontSize: 30,fontWeight:FontWeight.bold,color: Colors.white),)),
-                                        width: 60,
-                                        height: 60,
-                                        decoration: const BoxDecoration(
-                                          color: Colors.red,),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                 ],
+                                             child: Container(
+                                               width: 60,
+                                               height: 60,
+                                               margin: const EdgeInsets.symmetric(horizontal: 15),
+                                               decoration: BoxDecoration(
+                                                 color: numbersController.success.value  && numbersController.correctNumberIndex.value == index
+                                                     ? Colors.green
+                                                 : Colors.red,
+                                               ),
+                                               child: Center(
+                                                   child: Text(
+                                                     numbersController.solveNumbers[index].toString(),
+                                                     style: const TextStyle(
+                                                         fontSize: 30,
+                                                         fontWeight: FontWeight.bold,
+                                                         color: Colors.white),
+                                                   )),
+                                             )
+                                         );
+                                       },
+                                     ),
+                                   );
+                                 })
+                                ],
                               ),
                             );
                           },
@@ -138,7 +138,8 @@ class NumbersPage extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          numbersController.backward();
+                          // numbersController.backward();
+                          numbersController.speak();
                         },
                         child: Container(
                             width: 60,
@@ -148,7 +149,8 @@ class NumbersPage extends StatelessWidget {
                             child: const Icon(Icons.keyboard_voice,
                                 color: Colors.white, size: 30)),
                       ),
-                      GestureDetector(
+                      numbersController.success.value
+                      ? GestureDetector(
                         onTap: () {
                           numbersController.forward();
                         },
@@ -159,7 +161,8 @@ class NumbersPage extends StatelessWidget {
                                 color: Colors.blue, shape: BoxShape.circle),
                             child: const Icon(Icons.arrow_forward,
                                 color: Colors.white, size: 30)),
-                      ),
+                      )
+                      : const SizedBox(width: 50),
                     ],
                   ),
                 ),
