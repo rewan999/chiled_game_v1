@@ -169,15 +169,18 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                   height: Get.height * 0.8,
                   decoration: const BoxDecoration(
                     color: Colors.red,
-                  ),
-                  child: const Center(child: Text("JNDJF")),
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/numbers.gif"),
+                          fit: BoxFit.fill)),
                 ),
               ),
               const SizedBox(
-                height: 40,
+                height: 10,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => SumPage());
+                },
                 child: Container(
                   height: Get.height * 0.8,
                   decoration: BoxDecoration(
