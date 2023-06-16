@@ -23,7 +23,6 @@ class HomepageState extends State<Homepage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
         body: Stack(children: [
           Container(
             decoration: const BoxDecoration(
@@ -155,7 +154,7 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(),
+
       body: SafeArea(
         child: Center(
           child: SizedBox(
@@ -165,14 +164,26 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                 onTap: () {
                   Get.to(() => NumbersPage());
                 },
-                child: Container(
-                  height: Get.height * 0.8,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                      image: DecorationImage(
-                          image: AssetImage("assets/images/numbers.gif"),
-                          fit: BoxFit.fill)),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Text("knowing numners",style: TextStyle(
+                          fontSize: 30,
+                        color: Colors.white,
+                        backgroundColor: Colors.green
+                      ),),
+                    ),
+                    Container(
+                      height: Get.height * 0.8,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("assets/images/numbers.gif"),
+                              fit: BoxFit.fill)),
+                    ),
+
+                  ],
                 ),
+
               ),
               const SizedBox(
                 height: 10,
@@ -181,13 +192,24 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                 onTap: () {
                   Get.to(() => SumPage());
                 },
-                child: Container(
-                  height: Get.height * 0.8,
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      image: DecorationImage(
-                          image: AssetImage("assets/images/sum.gif"),
-                          fit: BoxFit.fill)),
+                child: Column(
+                  children: [
+                Container(
+                child: Text("Sum of numbers",style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    backgroundColor: Colors.green
+                ),),
+              ),
+                    Container(
+                      height: Get.height * 0.8,
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          image: DecorationImage(
+                              image: AssetImage("assets/images/sum.gif"),
+                              fit: BoxFit.fill)),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 40),
@@ -195,18 +217,29 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                 onTap: () {
                   Get.to(() => Info());
                 },
-                child: Container(
-                  height: Get.height * 0.8,
-                  decoration: const BoxDecoration(color: Colors.blue),
-                  child: Container(
-                    width: 200,
-                    height: 75,
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        image: DecorationImage(
-                            image: AssetImage("assets/images/test.gif"),
-                            fit: BoxFit.fill)),
-                  ),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Text("Test",style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          backgroundColor: Colors.green
+                      ),),
+                    ),
+                    Container(
+                      height: Get.height * 0.8,
+                      decoration: const BoxDecoration(color: Colors.blue),
+                      child: Container(
+                        width: 200,
+                        height: 75,
+                        decoration: BoxDecoration(
+                            color: Colors.blue,
+                            image: DecorationImage(
+                                image: AssetImage("assets/images/test.gif"),
+                                fit: BoxFit.fill)),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ]),
