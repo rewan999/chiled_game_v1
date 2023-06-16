@@ -28,24 +28,31 @@ class SumPage extends StatelessWidget {
                   child: Column(
 
                   children: [
-                    const SizedBox(height:10),
+                    const SizedBox(height:5),
 
                           Text(
                           ' ${sumPageController.randomNumber1}',
-                          style: const TextStyle(fontSize: 80,
+                          style: const TextStyle(fontSize: 60,
                           color: Colors.black),
 
 
                        ),
-                    const SizedBox(height: 20),
+                    Text(
+                      "+",
+                      style: const TextStyle(fontSize: 60,
+                          color: Colors.black),
+
+
+                    ),
+                    const SizedBox(height: 5),
                        Text(
                         ' ${sumPageController.randomNumber2}',
-                        style: const TextStyle(fontSize:80,
+                        style: const TextStyle(fontSize:60,
                             color: Colors.black),
 
                     )
 
-                    ,const SizedBox(height: 30),
+                    ,const SizedBox(height: 5),
                     ElevatedButton.icon(
                       label: Text("Generate Numbers",style: TextStyle(fontSize: 20),),
                       icon: Icon(Icons.play_circle_sharp,size: 30,),
@@ -57,12 +64,12 @@ class SumPage extends StatelessWidget {
                         sumPageController.getSum();
                       },
                     ),
-                    const SizedBox(height:30),
+                    const SizedBox(height:5),
                     Container(
                       width: Get.width * 0.7,
                       child: Form(
                           child: TextFormField(
-style: TextStyle(fontSize: 30,color: Colors.black),
+                                       style: TextStyle(fontSize: 20,color: Colors.white,backgroundColor: Colors.red),
                         keyboardType: TextInputType.number,
                         controller: sumPageController.resultController,
                         decoration:
@@ -85,7 +92,7 @@ style: TextStyle(fontSize: 30,color: Colors.black),
                         // }
                       )),
                     ),
-                    const SizedBox(height:50),
+                    const SizedBox(height:40),
                     ElevatedButton.icon(
                       label: Text("submit",style: TextStyle(fontSize: 35),),
                         icon: Icon(Icons.check_circle_outline,size: 40,),

@@ -28,19 +28,19 @@ class SumPageController extends GetxController {
   checkResult(context) {
     if (int.parse(resultController.text) == sum.value) {
       success.value = true;
+      Get.snackbar('Great !', 'u can try again',
+          backgroundColor: Colors.lightGreen,
+          colorText: Colors.white,
+          margin: const EdgeInsets.only(top: 10, left: 20, right: 20));
     } else {
       success.value = false;
+      Get.snackbar('wrong', 'pleas try again',
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          margin: const EdgeInsets.only(top: 10, left: 20, right: 20));
     }
 
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: success.value
-                ? const Text("IS TRUE ")
-                : const Text('Wrong. Try again!!'),
-          );
-        });
+
     if (success.value == true) {
       tryAgain();
     }

@@ -25,8 +25,11 @@ class HomepageState extends State<Homepage>
     return Scaffold(
         body: Stack(children: [
           Container(
+
             decoration: const BoxDecoration(
+
                 image: DecorationImage(
+
                     image: AssetImage("assets/images/144414-find-location.gif"),
                     fit: BoxFit.fill)),
           ),
@@ -159,7 +162,10 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
         child: Center(
           child: SizedBox(
             width: Get.width * 0.8,
-            child: ListView(children: [
+            child: ListView(
+                children: [
+                const SizedBox(
+                height: 10,),
               GestureDetector(
                 onTap: () {
                   Get.to(() => NumbersPage());
@@ -167,10 +173,10 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                 child: Column(
                   children: [
                     Container(
-                      child: Text("knowing numners",style: TextStyle(
+                      child: Text("Knowing Numbers",style: TextStyle(
                           fontSize: 30,
                         color: Colors.white,
-                        backgroundColor: Colors.green
+                        backgroundColor: Colors.purple
                       ),),
                     ),
                     Container(
@@ -184,9 +190,9 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                   ],
                 ),
 
-              ),
+              ), Container(child: Icon(Icons.arrow_downward_outlined,size: 50,),),
               const SizedBox(
-                height: 10,
+                height: 70,
               ),
               GestureDetector(
                 onTap: () {
@@ -198,7 +204,7 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                 child: Text("Sum of numbers",style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
-                    backgroundColor: Colors.green
+                    backgroundColor: Colors.purple
                 ),),
               ),
                     Container(
@@ -223,7 +229,7 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                       child: Text("Test",style: TextStyle(
                           fontSize: 30,
                           color: Colors.white,
-                          backgroundColor: Colors.green
+                          backgroundColor: Colors.purple
                       ),),
                     ),
                     Container(

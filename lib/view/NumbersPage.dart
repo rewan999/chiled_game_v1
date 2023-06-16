@@ -18,7 +18,8 @@ class NumbersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(title: Text("Knowing Numbers",),
+          backgroundColor: Colors.red,),
         body: SafeArea(
           child: Center(
             child: Stack(
@@ -55,7 +56,7 @@ class NumbersPage extends StatelessWidget {
                                               numbersController
                                                   .getRandomNumbers(index);
                                             },
-                                            child: const Icon(Icons.refresh, size: 40),
+                                            child: const Icon(Icons.refresh, size: 40,color: Colors.cyan,),
                                           ),
                                         ),
                                       ),
@@ -65,7 +66,7 @@ class NumbersPage extends StatelessWidget {
                                           child: Text(
                                               numbersController.time.toString(),
                                             style: const TextStyle(
-                                              color: Colors.black,
+                                              color: Colors.cyan,
                                               fontSize: 25
                                             ),
                                           ),
@@ -130,7 +131,7 @@ class NumbersPage extends StatelessWidget {
                                                                   .value ==
                                                               index
                                                       ? Colors.green
-                                                      : Colors.red,
+                                                      : Colors.cyan,
                                                 ),
                                                 child: Center(
                                                     child: Text(
@@ -141,7 +142,7 @@ class NumbersPage extends StatelessWidget {
                                                       fontSize: 30,
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      color: Colors.white),
+                                                      color: Colors.black),
                                                 )),
                                               ));
                                         },
@@ -168,7 +169,7 @@ class NumbersPage extends StatelessWidget {
                             width: 60,
                             height: 60,
                             decoration: const BoxDecoration(
-                                color: Colors.blue, shape: BoxShape.circle),
+                                color: Colors.red, shape: BoxShape.circle),
                             child: const Icon(Icons.arrow_back,
                                 color: Colors.white, size: 30)),
                       ),
@@ -178,12 +179,13 @@ class NumbersPage extends StatelessWidget {
                           numbersController.speak();
                         },
                         child: Container(
+
                             width: 60,
                             height: 60,
                             decoration: const BoxDecoration(
-                                color: Colors.blue, shape: BoxShape.circle),
+                                color: Colors.red, shape: BoxShape.circle,),
                             child: const Icon(Icons.keyboard_voice,
-                                color: Colors.white, size: 30)),
+                                color: Colors.white, size: 30,)),
                       ),
                       numbersController.success.value
                           ? GestureDetector(
@@ -194,10 +196,10 @@ class NumbersPage extends StatelessWidget {
                                   width: 60,
                                   height: 60,
                                   decoration: const BoxDecoration(
-                                      color: Colors.blue,
+                                      color: Colors.red,
                                       shape: BoxShape.circle),
                                   child: const Icon(Icons.arrow_forward,
-                                      color: Colors.white, size: 30)),
+                                      color: Colors.white, size: 30,)),
                             )
                           : const SizedBox(width: 50),
                     ],
