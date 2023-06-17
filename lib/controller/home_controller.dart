@@ -18,3 +18,6 @@ class HomeController extends GetxController {
     result.value = 0;
   }
 }
+
+
+// test 
