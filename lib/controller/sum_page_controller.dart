@@ -40,7 +40,6 @@ class SumPageController extends GetxController {
           margin: const EdgeInsets.only(top: 10, left: 20, right: 20));
     }
 
-
     if (success.value == true) {
       tryAgain();
     }

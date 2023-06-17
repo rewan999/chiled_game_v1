@@ -18,8 +18,12 @@ class NumbersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
-        appBar: AppBar(title: Text("Knowing Numbers",),
-          backgroundColor: Colors.red,),
+        appBar: AppBar(
+          title: Text(
+            "Knowing Numbers",
+          ),
+          backgroundColor: Colors.red,
+        ),
         body: SafeArea(
           child: Center(
             child: Stack(
@@ -46,7 +50,8 @@ class NumbersPage extends StatelessWidget {
                                 children: [
                                   const SizedBox(height: 10),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       SizedBox(
                                         width: 60,
@@ -56,45 +61,50 @@ class NumbersPage extends StatelessWidget {
                                               numbersController
                                                   .getRandomNumbers(index);
                                             },
-                                            child: const Icon(Icons.refresh, size: 40,color: Colors.cyan,),
+                                            child: const Icon(
+                                              Icons.refresh,
+                                              size: 40,
+                                              color: Colors.cyan,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                      Obx((){
+                                      Obx(() {
                                         return Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 30),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 30),
                                           child: Text(
-                                              numbersController.time.toString(),
+                                            numbersController.time.toString(),
                                             style: const TextStyle(
-                                              color: Colors.cyan,
-                                              fontSize: 25
-                                            ),
+                                                color: Colors.cyan,
+                                                fontSize: 25),
                                           ),
                                         );
                                       })
                                     ],
                                   ),
                                   const SizedBox(height: 10),
-                                  Obx((){
+                                  Obx(() {
                                     return AnimatedSwitcher(
-                                      duration: const Duration(milliseconds: 500),
+                                      duration:
+                                          const Duration(milliseconds: 500),
                                       child: numbersController.hide.value
                                           ? Container(
-                                        key: ValueKey(0),
-                                        width: 300,
-                                        height: 400,
-                                        color: Colors.white,
-                                      )
+                                              key: ValueKey(0),
+                                              width: 300,
+                                              height: 400,
+                                              color: Colors.white,
+                                            )
                                           : Container(
-                                        key: ValueKey(1),
-                                        width: 300,
-                                        height: 400,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                  '${Api.url}/education/images/${numbersController.numbersList[index].image.toString()}'),
-                                            )),
-                                      ),
+                                              key: ValueKey(1),
+                                              width: 300,
+                                              height: 400,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                image: NetworkImage(
+                                                    '${Api.url}/education/images/${numbersController.numbersList[index].image.toString()}'),
+                                              )),
+                                            ),
                                     );
                                   }),
                                   const SizedBox(height: 20),
@@ -179,13 +189,17 @@ class NumbersPage extends StatelessWidget {
                           numbersController.speak();
                         },
                         child: Container(
-
                             width: 60,
                             height: 60,
                             decoration: const BoxDecoration(
-                                color: Colors.red, shape: BoxShape.circle,),
-                            child: const Icon(Icons.keyboard_voice,
-                                color: Colors.white, size: 30,)),
+                              color: Colors.red,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.keyboard_voice,
+                              color: Colors.white,
+                              size: 30,
+                            )),
                       ),
                       numbersController.success.value
                           ? GestureDetector(
@@ -198,8 +212,11 @@ class NumbersPage extends StatelessWidget {
                                   decoration: const BoxDecoration(
                                       color: Colors.red,
                                       shape: BoxShape.circle),
-                                  child: const Icon(Icons.arrow_forward,
-                                      color: Colors.white, size: 30,)),
+                                  child: const Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                    size: 30,
+                                  )),
                             )
                           : const SizedBox(width: 50),
                     ],

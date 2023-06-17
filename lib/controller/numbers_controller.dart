@@ -38,7 +38,7 @@ class NumbersController extends GetxController {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     timer?.cancel();
     super.dispose();
   }
@@ -63,7 +63,6 @@ class NumbersController extends GetxController {
   }
 
   getRandomNumbers(int index) async {
-
     success.value = false;
     solveNumbers.clear();
     while (solveNumbers.length < 4) {
@@ -81,9 +80,9 @@ class NumbersController extends GetxController {
     hide.value = false;
     time.value = 5;
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if(time.value > 0){
-        time --;
-      }else{
+      if (time.value > 0) {
+        time--;
+      } else {
         timer.cancel();
       }
     });

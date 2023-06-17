@@ -11,51 +11,43 @@ class SumPage extends StatelessWidget {
     return Obx(() {
       return Scaffold(
         body: SafeArea(
-
           child: Center(
-
-            child: Stack(
-              children:[
-                Container(
-                   decoration: BoxDecoration(
-            color: Colors.blue,
-                image: DecorationImage(
-                    image: AssetImage("assets/images/num8.png"),
-                  fit: BoxFit.fill
+            child: Stack(children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/num8.png"),
+                      fit: BoxFit.fill),
                 ),
-                ),),
-                Center(
-                  child: Column(
-
+              ),
+              Center(
+                child: Column(
                   children: [
-                    const SizedBox(height:5),
-
-                          Text(
-                          ' ${sumPageController.randomNumber1}',
-                          style: const TextStyle(fontSize: 60,
-                          color: Colors.black),
-
-
-                       ),
+                    const SizedBox(height: 5),
+                    Text(
+                      ' ${sumPageController.randomNumber1}',
+                      style: const TextStyle(fontSize: 60, color: Colors.black),
+                    ),
                     Text(
                       "+",
-                      style: const TextStyle(fontSize: 60,
-                          color: Colors.black),
-
-
+                      style: const TextStyle(fontSize: 60, color: Colors.black),
                     ),
                     const SizedBox(height: 5),
-                       Text(
-                        ' ${sumPageController.randomNumber2}',
-                        style: const TextStyle(fontSize:60,
-                            color: Colors.black),
-
-                    )
-
-                    ,const SizedBox(height: 5),
+                    Text(
+                      ' ${sumPageController.randomNumber2}',
+                      style: const TextStyle(fontSize: 60, color: Colors.black),
+                    ),
+                    const SizedBox(height: 5),
                     ElevatedButton.icon(
-                      label: Text("Generate Numbers",style: TextStyle(fontSize: 20),),
-                      icon: Icon(Icons.play_circle_sharp,size: 30,),
+                      label: Text(
+                        "Generate Numbers",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      icon: Icon(
+                        Icons.play_circle_sharp,
+                        size: 30,
+                      ),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.deepOrangeAccent,
                         foregroundColor: Colors.white,
@@ -64,27 +56,25 @@ class SumPage extends StatelessWidget {
                         sumPageController.getSum();
                       },
                     ),
-                    const SizedBox(height:5),
+                    const SizedBox(height: 5),
                     Container(
                       width: Get.width * 0.7,
                       child: Form(
                           child: TextFormField(
-                                       style: TextStyle(fontSize: 20,color: Colors.white,backgroundColor: Colors.red),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            backgroundColor: Colors.red),
                         keyboardType: TextInputType.number,
                         controller: sumPageController.resultController,
-                        decoration:
-                        const InputDecoration(
-
-                          enabledBorder:UnderlineInputBorder (
-                            borderSide: BorderSide(color: Colors.red)
-                          ),
-
-                          labelText: "enter the sum of numbers",
-                          labelStyle: TextStyle(fontSize:20,
-
-                          color: Colors.black,
-                          backgroundColor: Colors.white)
-                        ),
+                        decoration: const InputDecoration(
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.red)),
+                            labelText: "enter the sum of numbers",
+                            labelStyle: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                backgroundColor: Colors.white)),
                         // validator: (value) {
                         //   if (value ==) {
                         //     sumPageController.success.value = true;
@@ -92,27 +82,31 @@ class SumPage extends StatelessWidget {
                         // }
                       )),
                     ),
-                    const SizedBox(height:40),
+                    const SizedBox(height: 40),
                     ElevatedButton.icon(
-                      label: Text("submit",style: TextStyle(fontSize: 35),),
-                        icon: Icon(Icons.check_circle_outline,size: 40,),
+                      label: Text(
+                        "submit",
+                        style: TextStyle(fontSize: 35),
+                      ),
+                      icon: Icon(
+                        Icons.check_circle_outline,
+                        size: 40,
+                      ),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.deepOrangeAccent,
                         foregroundColor: Colors.white,
                       ),
-                        onPressed: () {
-
-                          sumPageController.checkResult(context);
-                          ElevatedButton.styleFrom(
-                            backgroundColor: Colors.amber,
-                          );
-                        },
-                        ),
-
+                      onPressed: () {
+                        sumPageController.checkResult(context);
+                        ElevatedButton.styleFrom(
+                          backgroundColor: Colors.amber,
+                        );
+                      },
+                    ),
                   ],
-              ),
                 ),
-          ]  ),
+              ),
+            ]),
           ),
         ),
       );

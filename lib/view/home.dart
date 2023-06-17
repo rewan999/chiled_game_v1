@@ -1,13 +1,8 @@
-import 'dart:convert';
-
-import 'package:chiled_game_v1/controller/home_controller.dart';
 import 'package:chiled_game_v1/view/NumbersPage.dart';
 import 'package:chiled_game_v1/view/sum_page.dart';
+import 'package:chiled_game_v1/view/test_form.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
-import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -24,122 +19,33 @@ class HomepageState extends State<Homepage>
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(children: [
-          Container(
-
-            decoration: const BoxDecoration(
-
-                image: DecorationImage(
-
-                    image: AssetImage("assets/images/144414-find-location.gif"),
-                    fit: BoxFit.fill)),
+      Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/144414-find-location.gif"),
+                fit: BoxFit.fill)),
+      ),
+      Center(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.black,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 30,
+                vertical: 20,
+              )),
+          onPressed: () {
+            //final player=AudioPlayer();
+            // player.play(AssetSource('1.mp4'));
+            Get.to(() => const Levels());
+          },
+          child: const Text(
+            "Start",
+            style:
+                TextStyle(backgroundColor: Colors.black, color: Colors.white),
           ),
-          Center(
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 30,
-                    vertical: 20,
-                  )),
-              onPressed: () {
-                //final player=AudioPlayer();
-                // player.play(AssetSource('1.mp4'));
-                Get.to(() => Levels());
-              },
-              child: const Text(
-                "Start",
-                style: TextStyle(
-                    backgroundColor: Colors.black, color: Colors.white),
-              ),
-            ),
-          ),
-        ]));
-  }
-}
-
-class Info extends StatefulWidget {
-  const Info({Key? key}) : super(key: key);
-  @override
-  State<Info> createState() => InfoState();
-}
-
-class InfoState extends State<Info> with SingleTickerProviderStateMixin {
-  final formKey = GlobalKey<FormState>();
-  late AnimationController _controller;
-  @override
-  Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-    return Scaffold(
-        key: _scaffoldKey,
-        appBar: AppBar(),
-        backgroundColor: const Color(0xFFffffff),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.only(left: 40, right: 40),
-            child: Form(
-              key: formKey, //key for form
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: height * 0.04),
-                  const Text(
-                    "Here to Get",
-                    style: TextStyle(fontSize: 30, color: Color(0xFF363f93)),
-                  ),
-                  const Text(
-                    "Welcome !",
-                    style: TextStyle(fontSize: 30, color: Color(0xFF363f93)),
-                  ),
-                  SizedBox(height: height * 0.05),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: "enter child name",
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty ||
-                          !RegExp(r'^[A-Z a-z]+$').hasMatch(value)) {
-                        return "please enter correct name";
-                      } else
-                        return null;
-                    },
-                  ),
-                  SizedBox(height: height * 0.05),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: "enter child age",
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "you have enter the age";
-                      }
-                      if (!RegExp(r'^[0-7]+$').hasMatch(value)) {
-                        return "Sorry!! The child is Big for this Test";
-                      } else
-                        return null;
-                    },
-                  ),
-                  SizedBox(height: height * 0.05),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Sign Up",
-                          style: TextStyle(fontSize: 22, color: Colors.green)),
-                      ElevatedButton(
-                        onPressed: () {
-                          if (formKey.currentState!.validate())
-                            final snackbar =
-                                SnackBar(content: Text("Submitting Form"));
-                        },
-                        child: Icon(Icons.arrow_circle_right),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-        ));
+        ),
+      ),
+    ]));
   }
 }
 
@@ -157,27 +63,26 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       body: SafeArea(
         child: Center(
           child: SizedBox(
             width: Get.width * 0.8,
-            child: ListView(
-                children: [
-                const SizedBox(
-                height: 10,),
+            child: ListView(children: [
+              const SizedBox(
+                height: 10,
+              ),
               GestureDetector(
                 onTap: () {
                   Get.to(() => NumbersPage());
                 },
                 child: Column(
                   children: [
-                    Container(
-                      child: Text("Knowing Numbers",style: TextStyle(
+                    const Text(
+                      "Knowing Numbers",
+                      style: TextStyle(
                           fontSize: 30,
-                        color: Colors.white,
-                        backgroundColor: Colors.purple
-                      ),),
+                          color: Colors.white,
+                          backgroundColor: Colors.purple),
                     ),
                     Container(
                       height: Get.height * 0.8,
@@ -186,11 +91,13 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                               image: AssetImage("assets/images/numbers.gif"),
                               fit: BoxFit.fill)),
                     ),
-
                   ],
                 ),
-
-              ), Container(child: Icon(Icons.arrow_downward_outlined,size: 50,),),
+              ),
+              const Icon(
+                Icons.arrow_downward_outlined,
+                size: 50,
+              ),
               const SizedBox(
                 height: 70,
               ),
@@ -200,16 +107,16 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                 },
                 child: Column(
                   children: [
-                Container(
-                child: Text("Sum of numbers",style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.white,
-                    backgroundColor: Colors.purple
-                ),),
-              ),
+                    const Text(
+                      "Sum of numbers",
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          backgroundColor: Colors.purple),
+                    ),
                     Container(
                       height: Get.height * 0.8,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Colors.blue,
                           image: DecorationImage(
                               image: AssetImage("assets/images/sum.gif"),
@@ -221,16 +128,16 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
               const SizedBox(height: 40),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => Info());
+                  Get.to(() => const TestForm());
                 },
                 child: Column(
                   children: [
-                    Container(
-                      child: Text("Test",style: TextStyle(
+                    const Text(
+                      "Test",
+                      style: TextStyle(
                           fontSize: 30,
                           color: Colors.white,
-                          backgroundColor: Colors.purple
-                      ),),
+                          backgroundColor: Colors.purple),
                     ),
                     Container(
                       height: Get.height * 0.8,
@@ -238,7 +145,7 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
                       child: Container(
                         width: 200,
                         height: 75,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: Colors.blue,
                             image: DecorationImage(
                                 image: AssetImage("assets/images/test.gif"),
