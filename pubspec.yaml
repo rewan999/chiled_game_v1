@@ -37,6 +37,7 @@ dependencies:
   xrandom:
   scrollable_positioned_list:
   flutter_svg:
+  shared_preferences: ^2.1.2
 
 
   # The following adds the Cupertino Icons font to your application.

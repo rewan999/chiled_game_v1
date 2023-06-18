@@ -1,6 +1,7 @@
 import 'package:chiled_game_v1/Api/Api.dart';
 import 'package:chiled_game_v1/model/testData.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TestController extends GetxController {
   RxList testData = <TestData>[].obs;
@@ -10,6 +11,8 @@ class TestController extends GetxController {
   RxInt idChose2 = (-1).obs;
   RxInt index1 = (-1).obs;
   RxInt index2 = (-1).obs;
+  RxInt score = 0.obs;
+  RxInt currentScore = 0.obs;
 
   RxBool loading = false.obs;
 
@@ -17,6 +20,7 @@ class TestController extends GetxController {
   void onInit(){
     super.onInit();
    getData();
+
   }
 
   getData(){
@@ -24,6 +28,7 @@ class TestController extends GetxController {
     testData.clear();
     list1.clear();
     list2.clear();
+    currentScore.value = 0;
     Api.getTest().then((value) async {
       if(value.isNotEmpty){
         testData.addAll(value);
@@ -44,15 +49,13 @@ class TestController extends GetxController {
     });
   }
 
-  checkSolution() {
+  checkSolution() async {
     if (idChose1.value != -1 && idChose2.value != -1) {
       if (idChose1.value == idChose2.value) {
         print('correct answer');
-        // list1.removeWhere((item) => item[0] == idChose1.value);
-        // list2.removeWhere((item) => item[0] == idChose2.value);
+        currentScore.value += 1;
         list1.removeAt(index1.value);
         list2.removeAt(index2.value);
-        print(list1.length);
         idChose1.value = -1;
         idChose2.value = -1;
         index1.value = -1;
@@ -60,9 +63,19 @@ class TestController extends GetxController {
         update();
       } else {
         print('try again');
+        currentScore.value -= 1;
         idChose1.value = -1;
         idChose2.value = -1;
+        index1.value = -1;
+        index2.value = -1;
+        update();
       }
     }
   }
+
+  saveScore(score) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('score', score);
+  }
+
 }

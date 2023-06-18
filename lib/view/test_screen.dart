@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TestScreen extends StatelessWidget {
-  TestController testController = Get.put(TestController());
+
+  TestController testController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -12,23 +13,33 @@ class TestScreen extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           leading: BackButton(),
+          title: Text(testController.currentScore.value.toString()),
         ),
         body: SafeArea(
           child: Center(
             child: testController.loading.value
                 ? const Center(child: CircularProgressIndicator())
                 : testController.list1.isEmpty
-                    ? GestureDetector(
-                        onTap: () {
-                          testController.getData();
-                        },
-                        child: Container(
-                          width: 100,
-                          height: 50,
-                          color: Colors.blue,
-                          child: Center(child: Text('Try again')),
-                        ),
-                      )
+                    ? Column(
+                      children: [
+                        testController.currentScore.value < 5 && testController.currentScore.value != 0
+                            ? Text('You need to try the first level again')
+                            : Text(''),
+                        const SizedBox(height: 10),
+                        GestureDetector(
+                            onTap: () async {
+                              await testController.saveScore(testController.score.value);
+                              await testController.getData();
+                            },
+                            child: Container(
+                              width: 100,
+                              height: 50,
+                              color: Colors.blue,
+                              child: Center(child: Text('Try again')),
+                            ),
+                          ),
+                      ],
+                    )
                     : Container(
                         width: Get.width * 0.9,
                         height: Get.height,
@@ -43,11 +54,11 @@ class TestScreen extends StatelessWidget {
                                 shrinkWrap: true,
                                 itemCount: testController.list1.length,
                                 itemBuilder: (BuildContext context, index) {
-                                  return GestureDetector(onTap: () {
+                                  return GestureDetector(onTap: () async  {
                                     testController.idChose1.value = int.parse(
                                         testController.list1[index][0]);
                                     testController.index1.value = index;
-                                    testController.checkSolution();
+                                    await testController.checkSolution();
                                   }, child: Obx(() {
                                     return Container(
                                       width: 100,
@@ -85,11 +96,11 @@ class TestScreen extends StatelessWidget {
                                 itemCount: testController.list2.length,
                                 itemBuilder: (BuildContext context, index) {
                                   return GestureDetector(
-                                    onTap: () {
+                                    onTap: () async {
                                       testController.idChose2.value = int.parse(
                                           testController.list2[index][0]);
                                       testController.index2.value = index;
-                                      testController.checkSolution();
+                                      await testController.checkSolution();
                                     },
                                     child: Obx(() {
                                       return Container(

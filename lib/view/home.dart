@@ -128,7 +128,7 @@ class LevelsState extends State<Levels> with SingleTickerProviderStateMixin {
               const SizedBox(height: 40),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => const TestForm());
+                  Get.to(() => TestForm());
                 },
                 child: Column(
                   children: [
