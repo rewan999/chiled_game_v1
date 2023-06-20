@@ -86,13 +86,16 @@ class TestFormState extends State<TestForm> with SingleTickerProviderStateMixin 
                             style: TextStyle(fontSize: 22, color: Colors.green)),
                         ElevatedButton(
                           onPressed: () async {
+
+                             if (formKey.currentState!.validate()){
+                               final snackbar =
+                               SnackBar(content: Text("Submitting Form"));
+
                             await testFormController.saveUserInfo();
                             await testFormController.loadUserData();
                             testController.currentScore.value = 0;
                             Get.to(()=>TestScreen());
-                            // if (formKey.currentState!.validate())
-                            //   final snackbar =
-                            //       SnackBar(content: Text("Submitting Form"));
+                             }
                           },
                           child: const Icon(Icons.arrow_circle_right),
                         )
