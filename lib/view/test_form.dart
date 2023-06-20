@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:chiled_game_v1/controller/test_controller.dart';
 import 'package:chiled_game_v1/controller/test_form_controller.dart';
+import 'package:chiled_game_v1/view/result_page.dart';
 import 'package:chiled_game_v1/view/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -116,26 +117,52 @@ class TestFormState extends State<TestForm> with SingleTickerProviderStateMixin 
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text("Welcome ${testFormController.userName.value}"),
             const SizedBox(height: 20),
-            Text("Last Score: ${testFormController.userScore.value.toString()}"),
-            const SizedBox(height: 20),
             Text("If you are not ${testFormController.userName.value}\nSubmit again"),
             const SizedBox(height: 20),
-            GestureDetector(
-              onTap: (){
-                testFormController.userState.value = false;
-              },
-              child: Container(
-                width: 100,
-                height: 50,
-                color: Colors.blue,
-                child: const Center(
-                  child: Text('Submit again'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    testFormController.userState.value = false;
+                    testFormController.ageController.clear();
+                    testFormController.nameController.clear();
+                  },
+                  child: Container(
+                    width: 100,
+                    height: 50,
+                    color: Colors.blue,
+                    child: const Center(
+                      child: Text('Submit again'),
+                    ),
+                  ),
                 ),
-              ),
-            ),
+                const SizedBox(width: 20),
+                testFormController.userName.value == ''
+                    ? const SizedBox()
+                    :
+                GestureDetector(
+                  onTap: (){
+                    // testFormController.userState.value = false;
+                    Get.to(()=>ResultPage());
+
+                  },
+                  child: Container(
+                    width: 100,
+                    height: 50,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Text('I am ${testFormController.userName.value}'),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
