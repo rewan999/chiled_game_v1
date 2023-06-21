@@ -69,6 +69,10 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/143723-lopping-shape-lottie-animation.json
+    - assets/images/144414-find-location.json
+    - assets/images/142819-space-ride.json
+    - assets/images/17945-qtalk-default-v1.json
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

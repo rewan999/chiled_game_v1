@@ -6,7 +6,7 @@ import 'package:chiled_game_v1/view/result_page.dart';
 import 'package:chiled_game_v1/view/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:lottie/lottie.dart';
 
 class TestForm extends StatefulWidget {
   TestForm({Key? key}) : super(key: key);
@@ -28,84 +28,92 @@ class TestFormState extends State<TestForm> with SingleTickerProviderStateMixin 
     return Obx((){
       return Scaffold(
           key: _scaffoldKey,
-          appBar: AppBar(),
+          appBar: AppBar(
+            backgroundColor: Colors.orange,
+          ),
           backgroundColor: const Color(0xFFffffff),
           body: testFormController.userState.value
               ? _userExist()
               :  SingleChildScrollView(
             child: Container(
-              padding: const EdgeInsets.only(left: 40, right: 40),
-              child: Form(
-                key: formKey, //key for form
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: height * 0.04),
-                    const Text(
-                      "Here to Get",
-                      style: TextStyle(fontSize: 30, color: Color(0xFF363f93)),
-                    ),
-                    const Text(
-                      "Welcome !",
-                      style: TextStyle(fontSize: 30, color: Color(0xFF363f93)),
-                    ),
-                    SizedBox(height: height * 0.05),
-                    TextFormField(
-                      controller: testFormController.nameController,
-                      decoration: const InputDecoration(
-                        labelText: "enter child name",
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty ||
-                            !RegExp(r'^[A-Z a-z]+$').hasMatch(value)) {
-                          return "please enter correct name";
-                        } else
-                          return null;
-                      },
-                    ),
-                    SizedBox(height: height * 0.05),
-                    TextFormField(
-                      controller: testFormController.ageController,
-                      decoration: const InputDecoration(
-                        labelText: "enter child age",
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "you have enter the age";
-                        }
-                        if (!RegExp(r'^[0-7]+$').hasMatch(value)) {
-                          return "Sorry!! The child is Big for this Test";
-                        } else
-                          return null;
-                      },
-                    ),
-                    SizedBox(height: height * 0.05),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("Sign Up",
-                            style: TextStyle(fontSize: 22, color: Colors.green)),
-                        ElevatedButton(
-                          onPressed: () async {
 
-                             if (formKey.currentState!.validate()){
-                               final snackbar =
-                               SnackBar(content: Text("Submitting Form"));
+                padding: const EdgeInsets.only(left: 40, right: 40),
+                child: Form(
+                  key: formKey, //key for form
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: height * 0.04),
+                      const Text(
+                        "Here to Get",
+                        style: TextStyle(fontSize: 40, color:Colors.orange),
+                      ),
+                      const Text(
+                        "Welcome !",
+                        style: TextStyle(fontSize: 40, color: Colors.orange),
+                      ),
+                      SizedBox(height: height * 0.05),
+                      TextFormField(
+                        controller: testFormController.nameController,
+                        decoration: const InputDecoration(
+                          labelText: "enter child name",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[A-Z a-z]+$').hasMatch(value)) {
+                            return "please enter correct name";
+                          } else
+                            return null;
+                        },
+                      ),
+                      SizedBox(height: height * 0.05),
+                      TextFormField(
+                        controller: testFormController.ageController,
+                        decoration: const InputDecoration(
+                          labelText: "enter child age",
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "you have enter the age";
+                          }
+                          if (!RegExp(r'^[0-20]+$').hasMatch(value)) {
+                          } else
+                            return null;
+                        },
+                      ),
+                      SizedBox(height: height * 0.05),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
 
-                            await testFormController.saveUserInfo();
-                            await testFormController.loadUserData();
-                            testController.currentScore.value = 0;
-                            Get.to(()=>TestScreen());
-                             }
-                          },
-                          child: const Icon(Icons.arrow_circle_right),
-                        )
-                      ],
-                    )
-                  ],
+                          ElevatedButton(
+
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.deepOrangeAccent,
+                              foregroundColor: Colors.white,
+                            ),
+                            onPressed: () async {
+
+                               if (formKey.currentState!.validate()){
+                                 final snackbar =
+                                 SnackBar(content: Text("Submitting Form"));
+
+                              await testFormController.saveUserInfo();
+                              await testFormController.loadUserData();
+                              testController.currentScore.value = 0;
+                              Get.to(()=>TestScreen());
+                               }
+
+                            },
+                            child: const Icon(Icons.arrow_circle_right,size: 30,),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
+
           ));
     });
   }
@@ -115,13 +123,21 @@ class TestFormState extends State<TestForm> with SingleTickerProviderStateMixin 
       width: Get.width,
       height: Get.height,
       child: Center(
-        child: Column(
+        child:
+        Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Welcome ${testFormController.userName.value}"),
+            Text("Welcome ${testFormController.userName.value}",
+            style:TextStyle(fontSize: 40,color: Colors.green),),
             const SizedBox(height: 20),
-            Text("If you are not ${testFormController.userName.value}\nSubmit again"),
+            Text("If you are not ${testFormController.userName.value}\nSubmit again",
+                style:TextStyle(fontSize: 30,color: Colors.lightGreen),),
+            const Icon(
+              Icons.arrow_downward_outlined,
+              size: 50,
+              color: Colors.green,
+            ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -134,11 +150,12 @@ class TestFormState extends State<TestForm> with SingleTickerProviderStateMixin 
                     testFormController.nameController.clear();
                   },
                   child: Container(
-                    width: 100,
-                    height: 50,
-                    color: Colors.blue,
+                    width: 150,
+                    height: 100,
+                    color: Colors.deepOrangeAccent,
                     child: const Center(
-                      child: Text('Submit again'),
+                      child: Text('Submit again',
+                          style:TextStyle(color: Colors.white,fontSize: 20)),
                     ),
                   ),
                 ),
@@ -153,11 +170,12 @@ class TestFormState extends State<TestForm> with SingleTickerProviderStateMixin 
 
                   },
                   child: Container(
-                    width: 100,
-                    height: 50,
-                    color: Colors.blue,
+                    width: 150,
+                    height: 100,
+                    color: Colors.deepOrange,
                     child: Center(
-                      child: Text('I am ${testFormController.userName.value}'),
+                      child: Text('I am ${testFormController.userName.value}'
+                        ,  style:TextStyle(color: Colors.white,fontSize: 20)    ),
                     ),
                   ),
                 ),

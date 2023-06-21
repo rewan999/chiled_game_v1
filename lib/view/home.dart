@@ -3,6 +3,7 @@ import 'package:chiled_game_v1/view/sum_page.dart';
 import 'package:chiled_game_v1/view/test_form.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -19,30 +20,31 @@ class HomepageState extends State<Homepage>
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(children: [
-      Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/images/144414-find-location.gif"),
-                fit: BoxFit.fill)),
-      ),
+        Container(
+         
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/17945-qtalk-default-v1.gif"),
+                  fit: BoxFit.fill)),
+        ),
+
       Center(
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(60)
+            ),
+              backgroundColor: Colors.orange,
               padding: const EdgeInsets.symmetric(
-                horizontal: 30,
-                vertical: 20,
+                horizontal: 50,
+                vertical: 30,
+                
               )),
           onPressed: () {
-            //final player=AudioPlayer();
-            // player.play(AssetSource('1.mp4'));
             Get.to(() => const Levels());
           },
-          child: const Text(
-            "Start",
-            style:
-                TextStyle(backgroundColor: Colors.black, color: Colors.white),
-          ),
+          child: const Icon(Icons.not_started_outlined,size:70,
+          color: Colors.black,)
         ),
       ),
     ]));

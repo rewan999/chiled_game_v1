@@ -27,16 +27,20 @@ class SumPage extends StatelessWidget {
                     const SizedBox(height: 5),
                     Text(
                       ' ${sumPageController.randomNumber1}',
-                      style: const TextStyle(fontSize: 60, color: Colors.black),
+                      style: const TextStyle(fontSize: 60, color: Colors.red,
+                          backgroundColor: Colors.white),
                     ),
+                    const SizedBox(height: 5),
                     Text(
                       "+",
-                      style: const TextStyle(fontSize: 60, color: Colors.black),
+                      style: const TextStyle(fontSize: 60, color: Colors.green
+                      ,backgroundColor: Colors.white),
                     ),
                     const SizedBox(height: 5),
                     Text(
                       ' ${sumPageController.randomNumber2}',
-                      style: const TextStyle(fontSize: 60, color: Colors.black),
+                      style: const TextStyle(fontSize: 60, color: Colors.blue,
+                          backgroundColor: Colors.white ),
                     ),
                     const SizedBox(height: 5),
                     ElevatedButton.icon(
@@ -49,7 +53,7 @@ class SumPage extends StatelessWidget {
                         size: 30,
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.deepOrangeAccent,
+                        primary: Colors.orange,
                         foregroundColor: Colors.white,
                       ),
                       onPressed: () {
@@ -62,9 +66,9 @@ class SumPage extends StatelessWidget {
                       child: Form(
                           child: TextFormField(
                         style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            backgroundColor: Colors.red),
+                            fontSize: 25,
+                            color: Colors.orange,
+                            backgroundColor: Colors.white),
                         keyboardType: TextInputType.number,
                         controller: sumPageController.resultController,
                         decoration: const InputDecoration(
@@ -93,7 +97,7 @@ class SumPage extends StatelessWidget {
                         size: 40,
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.deepOrangeAccent,
+                        primary: Colors.orange,
                         foregroundColor: Colors.white,
                       ),
                       onPressed: () {

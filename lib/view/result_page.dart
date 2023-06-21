@@ -13,12 +13,14 @@ class ResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange,
         leading: const BackButton(),
       ),
       body: SafeArea(
         child: SizedBox(
           child: Center(
-            child: Text("Last Score: ${testFormController.userScore.value.toString()}"),
+            child: Text("Last Score: ${testFormController.userScore.value.toString()}",
+                style:TextStyle(color: Colors.orange,fontSize:50)),
           ),
         ),
       ),

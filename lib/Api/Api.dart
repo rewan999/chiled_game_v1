@@ -6,9 +6,8 @@ import 'package:http/http.dart' as http;
 import '../model/number.dart';
 
 class Api {
-
   static var url = "http://10.0.2.2:8080";
-   //static var url = "http://192.168.1.31:8080";
+  // static var url = "http://192.168.1.10:8080";
 
   static Future<List<Number>> getNumbers() async {
     var request =
