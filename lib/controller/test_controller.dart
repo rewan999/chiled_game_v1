@@ -78,4 +78,9 @@ class TestController extends GetxController {
     prefs.setInt('score', score);
   }
 
+  getScore() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    score.value = prefs.getInt('score') ?? 0;
+  }
+
 }

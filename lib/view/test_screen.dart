@@ -28,7 +28,7 @@ class TestScreen extends StatelessWidget {
                         const SizedBox(height: 10),
                         GestureDetector(
                             onTap: () async {
-                              await testController.saveScore(testController.score.value);
+                              await testController.saveScore(testController.currentScore.value);
                               await testController.getData();
                             },
                             child: Container(
@@ -36,6 +36,21 @@ class TestScreen extends StatelessWidget {
                               height: 50,
                               color: Colors.blue,
                               child: Center(child: Text('Try again')),
+                            ),
+                          ),
+                        const SizedBox(height: 30),
+                        GestureDetector(
+                            onTap: () async {
+                              await testController.saveScore(testController.currentScore.value);
+                              testController.currentScore.value = 0;
+                              // await testController.getData();
+                              Get.back();
+                            },
+                            child: Container(
+                              width: 100,
+                              height: 50,
+                              color: Colors.blue,
+                              child: Center(child: Text('back')),
                             ),
                           ),
                       ],
